@@ -1,0 +1,24 @@
+{
+  "name": "reactchatproject",
+  "version": "1.0.0",
+  "description": "Full stack chat project using socket.io",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev-server": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/clockwerkz/reactChatProject.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/clockwerkz/reactChatProject/issues"
+  },
+  "homepage": "https://github.com/clockwerkz/reactChatProject#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^4.1.1"
+  }
+}
