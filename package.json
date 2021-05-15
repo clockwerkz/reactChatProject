@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev-server": "nodemon server.js"
+    "dev-server": "nodemon server.js",
+    "client-start":"npm run start --prefix client",
+    "dev-project":"concurrently \"npm run dev-server\" \"npm run client-start\""
   },
   "repository": {
     "type": "git",
@@ -18,6 +20,7 @@
   },
   "homepage": "https://github.com/clockwerkz/reactChatProject#readme",
   "dependencies": {
+    "concurrently": "^6.1.0",
     "express": "^4.17.1",
     "socket.io": "^4.1.1"
   }
