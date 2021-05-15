@@ -2,7 +2,7 @@ const app = require('express')();
 const server = require('http').createServer(app);
 const io = require('socket.io')(server, {
     cors: {
-      origin: "https://example.com",
+      origin: "http://localhost:3000",
       methods: ["GET", "POST"]
     }
   });
@@ -14,8 +14,10 @@ app.get('/test', (req, res)=>{
 })
 
 
-io.on('connection', () => { 
+io.on('connection', (socket) => { 
     console.log("Successfully connected to the socket server...")
+    socket.join("Chat-Room")
+    io.to("Chat-room").emit(`${socket.id} has joined.`);
  });
 
 server.listen(PORT, ()=>{
