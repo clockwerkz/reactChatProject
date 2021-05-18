@@ -16,8 +16,9 @@ app.get('/test', (req, res)=>{
 
 io.on('connection', (socket) => { 
     console.log("Successfully connected to the socket server...")
-    socket.join("Chat-Room")
-    io.to("Chat-room").emit(`${socket.id} has joined.`);
+    socket.on("message", (data)=>{
+      io.emit("message", data);
+    })
  });
 
 server.listen(PORT, ()=>{

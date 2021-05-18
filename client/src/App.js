@@ -1,16 +1,29 @@
-import React from 'react';
+import React, {useState, useEffect, useRef } from 'react';
 import './App.css';
 
 const io = require("socket.io-client");
-const socket = io("http://localhost:5000");
 
 function App() {
-  socket.on("connect",()=>{
-    console.log("Connected to the socket backend");
-  })
+
+  const socketRef = useRef();
+
+  useEffect(()=>{
+    socketRef.current = io.connect("http://localhost:5000");
+    socketRef.current.on("message", (data)=>{
+      console.log(data);
+    })
+    return () => socketRef.current.disconnect();
+  }, []);
+
+  const handleButtonClick = () =>{
+    console.log('clicked');
+    socketRef.current.emit("message", {"Test_User1":"Hello from the front end"});
+  }
+
   return (
     <div className="App">
       <h1>Chat Program</h1>
+      <button onClick={handleButtonClick}>Click Me</button>
     </div>
   );
 }
