@@ -1,31 +1,13 @@
-import React, {useState, useEffect, useRef } from 'react';
-import './App.css';
+import React, { useState, useEffect, useRef } from "react";
 
-const io = require("socket.io-client");
+import ChatRoom from "./components/pages/ChatRoom";
 
-function App() {
-
-  const socketRef = useRef();
-
-  useEffect(()=>{
-    socketRef.current = io.connect("http://localhost:5000");
-    socketRef.current.on("message", (data)=>{
-      console.log(data);
-    })
-    return () => socketRef.current.disconnect();
-  }, []);
-
-  const handleButtonClick = () =>{
-    console.log('clicked');
-    socketRef.current.emit("message", {"Test_User1":"Hello from the front end"});
-  }
-
+const App = () => {
   return (
-    <div className="App">
-      <h1>Chat Program</h1>
-      <button onClick={handleButtonClick}>Click Me</button>
+    <div>
+      <ChatRoom />
     </div>
   );
-}
+};
 
 export default App;
